@@ -1,0 +1,12 @@
+[build]
+  command = "node scripts/check-netlify-env.mjs && npm run typecheck && npm run lint && npm test && npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "24"
+  VITE_DATA_MODE = "supabase"
+  VITE_ENABLE_DEMO_ACCOUNTS = "true"
+
+# Set VITE_SUPABASE_URL and VITE_SUPABASE_PUBLISHABLE_KEY in the target site's
+# build environment after its account/site and exact upload payload are approved.
+# Never place actual project keys, secrets, tokens, or a site ID in this file.

@@ -1,0 +1,10 @@
+import type { Collection } from '../types/collections.ts';
+
+// Entirely fictional delivery fixtures; never imported from business notes.
+const base = { startDate: null, targetDate: null, source: null, manuallyEdited: false, createdAt: '2026-04-01T00:00:00.000Z', updatedAt: '2026-04-01T00:00:00.000Z' };
+export const INITIAL_COLLECTIONS: Collection[] = [
+  { ...base, id: 'demo-coast', name: 'Basic Tişört Koleksiyonu 2026', status: 'planning', description: 'Günlük kullanıma uygun, bisiklet yaka pamuklu tişörtler.', notes: 'Renk kartelası ve beden dağılımı üzerinde çalışılıyor.', productionTarget: 40, producedQuantity: null, salesTarget: 25, soldQuantity: null, plannedBudget: 6500, actualRevenue: null, actualExpense: null, financeQuality: 'unverified' },
+  { ...base, id: 'demo-orbit', name: 'Oversize Hoodie Koleksiyonu 2026', status: 'on_sale', description: 'Geniş kesim, kanguru cepli ve düz renk kapüşonlu parçalar.', notes: 'Satıştaki bedenler haftalık olarak takip ediliyor.', startDate: '2026-04-01', targetDate: '2026-04-30', productionTarget: 80, producedQuantity: 60, salesTarget: 50, soldQuantity: 18, plannedBudget: 9000, actualRevenue: 5400, actualExpense: 4200, financeQuality: 'unverified' },
+  { ...base, id: 'demo-line', name: 'Sweatshirt Koleksiyonu 2026', status: 'archived', description: 'Ribana yaka ve manşetli, düz kesim sweatshirtler.', notes: 'Sezon değerlendirmesi tamamlandı; yeni üretim planlanmıyor.', productionTarget: 30, producedQuantity: 30, salesTarget: 20, soldQuantity: 12, plannedBudget: 4000, actualRevenue: 2400, actualExpense: 3300, financeQuality: 'approximate' },
+  { ...base, id: 'demo-zero', name: 'Fermuarlı Sweatshirt Koleksiyonu 2026', status: 'sampling', description: 'Fermuarlı, rahat kesim sweatshirtler için numune hazırlığı.', notes: 'Kesim ve dikiş numuneleri hazırlanacak.', productionTarget: null, producedQuantity: 0, salesTarget: null, soldQuantity: 0, plannedBudget: 0, actualRevenue: 0, actualExpense: 0, financeQuality: 'unverified' },
+];

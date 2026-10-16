@@ -1,0 +1,8 @@
+ÜRÜN ÇEKİM PLANI
+
+1. Düz fonda ön ve arka görünüş.
+2. Yaka, cep, manşet ve dikiş detayları.
+3. Tam boy görünüş ve hareketli kareler.
+4. Seçilen karelerde ışık ve renk düzenlemesi.
+
+Teslim: ürün sayfası için dikey ve kare kadrajlar.

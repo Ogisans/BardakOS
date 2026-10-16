@@ -1,0 +1,26 @@
+import { useRef, useState } from 'react';
+import { ArrowLeft, LogOut, Save } from 'lucide-react';
+import type { LocalProfile, ProfileInput } from '@/types/localSession';
+import { profileInitials, ProfileValidationError, ROLE_LABEL, WORK_AREA } from '@/domain/localSession';
+import { inputClass, primaryButton, secondaryButton } from '@/features/collections/presentation';
+
+export function ProfileScreen({ profile, onBack, onSave, onLogout, busy, persistent }: { profile: LocalProfile; onBack: () => void; onSave: (input: ProfileInput) => Promise<void>; onLogout: () => Promise<void>; busy: boolean; persistent: boolean }) {
+  const [name, setName] = useState(profile.name);
+  const [workNote, setWorkNote] = useState(profile.workNote);
+  const [errors, setErrors] = useState<Partial<Record<keyof ProfileInput, string>>>({});
+  const [notice, setNotice] = useState('');
+  const [failure, setFailure] = useState('');
+  const nameRef = useRef<HTMLInputElement>(null);
+  return <div className="mx-auto w-full max-w-2xl space-y-5 pb-6"><button type="button" onClick={onBack} className={`${secondaryButton} border-emerald-200 text-emerald-800 dark:border-emerald-900 dark:text-emerald-300`}><ArrowLeft className="h-4 w-4" />Geri</button>
+    <section className="rounded-3xl border border-gray-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900 sm:p-7"><div className="flex items-center gap-4"><div aria-label={`${profile.name} baş harfleri`} className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-emerald-100 text-xl font-black text-emerald-800 dark:bg-emerald-500/15 dark:text-emerald-300">{profileInitials(profile.name)}</div><div className="min-w-0"><h2 className="break-words text-xl font-black text-gray-900 dark:text-white">{profile.name}</h2><span className="mt-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[11px] font-bold text-gray-600 dark:bg-zinc-800 dark:text-zinc-300">{ROLE_LABEL[profile.role]}</span></div></div>
+      <dl className="my-6 grid grid-cols-1 gap-4 rounded-2xl bg-gray-50 p-4 text-xs dark:bg-zinc-950 sm:grid-cols-2"><div><dt className="text-gray-400">E-posta</dt><dd className="mt-1 break-all font-bold text-gray-700 dark:text-zinc-200">{profile.email}</dd></div><div><dt className="text-gray-400">Çalışma alanı</dt><dd className="mt-1 font-bold text-gray-700 dark:text-zinc-200">{WORK_AREA[profile.role]}</dd></div><div><dt className="text-gray-400">Erişim</dt><dd className="mt-1 font-bold text-gray-700 dark:text-zinc-200">{profile.role === 'admin' ? 'Tüm yönetim ve saha ekranları' : 'Yalnız saha ekranları'}</dd></div></dl>
+      <form noValidate className="space-y-4" onSubmit={async event => { event.preventDefault(); if (busy) return; setErrors({}); setNotice(''); setFailure(''); try { await onSave({ name, workNote }); setName(name.trim()); setWorkNote(workNote.trim()); setNotice('Profil güncellendi.'); } catch (error) { if (error instanceof ProfileValidationError) { setErrors(error.fields); if (error.fields.name) nameRef.current?.focus(); } else setFailure(error instanceof Error ? error.message : 'Profil kaydedilemedi.'); } }}>
+        <div><label htmlFor="profile-name" className="mb-1.5 block text-xs font-bold text-gray-700 dark:text-zinc-200">Ad soyad</label><input ref={nameRef} id="profile-name" disabled={busy} value={name} maxLength={80} onChange={event => setName(event.target.value)} aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? 'profile-name-error' : undefined} className={inputClass} />{errors.name && <p id="profile-name-error" role="alert" className="mt-1 text-xs text-rose-600">{errors.name}</p>}</div>
+        <div><label htmlFor="profile-note" className="mb-1.5 block text-xs font-bold text-gray-700 dark:text-zinc-200">Çalışma notu</label><textarea id="profile-note" disabled={busy} value={workNote} maxLength={160} rows={3} onChange={event => setWorkNote(event.target.value)} aria-invalid={Boolean(errors.workNote)} className={inputClass} />{errors.workNote && <p role="alert" className="mt-1 text-xs text-rose-600">{errors.workNote}</p>}</div>
+        {notice && <p role="status" className="text-xs font-bold text-emerald-700 dark:text-emerald-400">{notice}</p>}
+        <button type="submit" disabled={busy} className={primaryButton}><Save className="h-4 w-4" />Profili kaydet</button>
+      </form>
+    </section>
+    {failure && <p role="alert" className="text-xs text-rose-600">{failure}</p>}<section className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-gray-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900"><p className="max-w-sm text-xs leading-relaxed text-gray-500 dark:text-zinc-400">{persistent ? 'Profil ve koleksiyon kayıtları korunur. Saha işlemleri, gider ve takvim kayıtları bu cihazdaki oturumla sınırlıdır; çıkışta sıfırlanır.' : 'Çıkış yaptığınızda bu oturumdaki profil değişiklikleri ve çalışma kayıtları sıfırlanır.'}</p><button type="button" disabled={busy} onClick={() => { setFailure(''); void onLogout().catch(error => setFailure(error instanceof Error ? error.message : 'Çıkış tamamlanamadı.')); }} className={`${secondaryButton} text-rose-600 dark:text-rose-400`}><LogOut className="h-4 w-4" />Çıkış yap</button></section>
+  </div>;
+}
