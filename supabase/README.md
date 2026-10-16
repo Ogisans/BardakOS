@@ -1,6 +1,6 @@
 # Kurgusal Supabase çalışma alanı
 
-Bağlı teslim projesi zaten kuruludur. Mevcut projede migration/seed/reset'i tekrar çalıştırmayın.
+Bağlı Supabase projesi zaten kuruludur. Mevcut projede migration/seed/reset'i tekrar çalıştırmayın.
 
 Başka boş projeye kurulum gerekiyorsa proje sahibinin SQL Editor oturumunda sırasıyla migrations/202610160001_bardak_workspace.sql ve seed.sql uygulanır. Seed bir kurgusal workspace, dört koleksiyon, sekiz içerik ve dört dosya referansı oluşturur; gerçek işletme verisi içermez. Seed tekrarında mevcut düzenlemeler korunur ancak silinen başlangıç kayıtları geri eklenebilir.
 

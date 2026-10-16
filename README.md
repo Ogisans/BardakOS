@@ -1,6 +1,6 @@
 # BardakOS
 
-React, TypeScript ve Tailwind ile koleksiyon yönetimi ve saha satış akışları. Bu paket yalnız güncel izinli kaynakları içerir; eski Git geçmişi ve yerel ortam dosyaları içermez.
+React, TypeScript ve Tailwind ile koleksiyon yönetimi ve saha satış akışları.
 
 **Bütün başlangıç kayıtları ve hesaplar kurgusaldır.** Gerçek kişi, banka/ödeme hesabı veya işletme muhasebesi yoktur. Gerçek tahsilat yapılmaz.
 
@@ -15,7 +15,7 @@ npm run dev -- --host 127.0.0.1 --port 5173 --strictPort
 
 Ayarsız çalıştırma yerel önizlemedir. Gerçek kurgusal Supabase çalışma alanına bağlanmak için `.env.example` dosyasını Git dışındaki `.env.local` dosyasına kopyalayıp aşağıdaki alanları doldurun. Proje bağlantı değerleri pakete dahil değildir.
 
-| Ortam adı | Teslim ayarı |
+| Ortam adı | Bağlantı ayarı |
 |---|---|
 | VITE_DATA_MODE | supabase |
 | VITE_SUPABASE_URL | Yetkilendirilen kurgusal projenin URL'si |
@@ -24,9 +24,9 @@ Ayarsız çalıştırma yerel önizlemedir. Gerçek kurgusal Supabase çalışma
 
 Hiçbir VITE değişkenine secret/service_role, DB parolası veya kişisel erişim tokenı girilmez. Public anahtar tarayıcıda görünür; veri erişimini Auth, sunucu üyeliği, kolon izinleri ve RLS korur. Eksik/hatalı cloud ayarı veya başarısız Auth isteği yerel hesaba sessiz geçiş yapmaz.
 
-## Teslim hesapları
+## Test hesapları
 
-Yalnız kurgusal teslim çalışma alanı için herkese açık test bilgileridir:
+Yalnız örnek çalışma alanı için herkese açık test bilgileridir:
 
 | Profil | E-posta | Parola |
 |---|---|---|
@@ -49,7 +49,7 @@ Yalnız kurgusal teslim çalışma alanı için herkese açık test bilgileridir
 
 ![Koleksiyonlar koyu tema](screenshots/collections-dark.jpg)
 
-[Açık tema koleksiyonları](screenshots/collections-light.jpg) · [Giriş ve teslim hesapları](screenshots/login-light.jpg)
+[Açık tema koleksiyonları](screenshots/collections-light.jpg) · [Giriş ve test hesapları](screenshots/login-light.jpg)
 
 [Kurgusal stok açık tema](screenshots/stock-light.jpg) · [Kurgusal stok koyu tema](screenshots/stock-dark.jpg)
 
@@ -64,8 +64,8 @@ npm test
 npm run build
 ```
 
-60 otomatik test; gerçek kurgusal projede önceki 37 Auth/API kontrolü ve kalıcılık kabulü; son düzenleme için hedefli gerçek tarayıcı kontrolleri. PGlite dev bağımlılığı yalnız yerel SQL testlerindedir. Gerçek cihaz, uzak hosting ve uzakta ikinci yönetici/başka workspace senaryoları doğrulanmış sayılmaz.
+60 otomatik test; gerçek Supabase projesinde 37 Auth/API kontrolü, kalıcılık kabulü ve tarayıcı kontrolleri. PGlite dev bağımlılığı yalnız yerel SQL testlerindedir. Gerçek cihaz ve uzakta ikinci yönetici/başka workspace senaryoları ayrıca doğrulanmalıdır.
 
 `netlify.toml`: Node 24, `dist` çıktı klasörü, tür/lint/test/build ve gerekli public cloud env kontrolü. SPA fallback `public/_redirects` dosyasındadır. Netlify hedef hesabı/site ve tam kaynak paketi onaylandıktan sonra build kapsamındaki URL/public anahtar ortamdan verilir; source dosyaya yazılmaz. Yapılandırma [Netlify Vite](https://docs.netlify.com/build/frameworks/framework-setup-guides/vite/), [dosya tabanlı ayarlar](https://docs.netlify.com/build/configure-builds/file-based-configuration/) ve [SPA rewrite](https://docs.netlify.com/manage/routing/redirects/rewrites-proxies/) belgelerine dayanır.
 
-Bu yerel paket henüz public GitHub'a gönderilmedi veya Netlify'a deploy edilmedi. Public repo ve canlı link teslimin sonraki adımıdır. Bağlı mevcut Supabase projesinde migration/seed/reset'i tekrar çalıştırmayın. Başka boş projeye kurulum: [supabase/README.md](supabase/README.md).
+Canlı uygulama: [BardakOS](https://bardakos.netlify.app/). Kaynak kod: [GitHub](https://github.com/Ogisans/BardakOS). Bağlı mevcut Supabase projesinde migration/seed/reset'i tekrar çalıştırmayın. Başka boş projeye kurulum: [supabase/README.md](supabase/README.md).
