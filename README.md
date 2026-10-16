@@ -69,3 +69,5 @@ npm run build
 `netlify.toml`: Node 24, `dist` çıktı klasörü, tür/lint/test/build ve gerekli public cloud env kontrolü. SPA fallback `public/_redirects` dosyasındadır. Netlify hedef hesabı/site ve tam kaynak paketi onaylandıktan sonra build kapsamındaki URL/public anahtar ortamdan verilir; source dosyaya yazılmaz. Yapılandırma [Netlify Vite](https://docs.netlify.com/build/frameworks/framework-setup-guides/vite/), [dosya tabanlı ayarlar](https://docs.netlify.com/build/configure-builds/file-based-configuration/) ve [SPA rewrite](https://docs.netlify.com/manage/routing/redirects/rewrites-proxies/) belgelerine dayanır.
 
 Canlı uygulama: [BardakOS](https://bardakos.netlify.app/). Kaynak kod: [GitHub](https://github.com/Ogisans/BardakOS). Bağlı mevcut Supabase projesinde migration/seed/reset'i tekrar çalıştırmayın. Başka boş projeye kurulum: [supabase/README.md](supabase/README.md).
+
+Mevcut canlı sürüm Netlify Drop ile yayımlanmıştır; GitHub pushları otomatik deploy tetiklemez. Kod değişikliklerinde Supabase bağlantı ayarlarıyla yeniden production build alınıp Netlify’a yüklenmelidir.
