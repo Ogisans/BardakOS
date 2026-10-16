@@ -1,6 +1,6 @@
 # BardakOS
 
-React, TypeScript ve Tailwind ile koleksiyon yönetimi ve saha satış akışları. Software Persona 3. proje teslimi için hazırlanmıştır. Bu paket yalnız güncel izinli kaynakları içerir; eski Git geçmişi ve yerel ortam dosyaları içermez.
+React, TypeScript ve Tailwind ile koleksiyon yönetimi ve saha satış akışları. Bu paket yalnız güncel izinli kaynakları içerir; eski Git geçmişi ve yerel ortam dosyaları içermez.
 
 **Bütün başlangıç kayıtları ve hesaplar kurgusaldır.** Gerçek kişi, banka/ödeme hesabı veya işletme muhasebesi yoktur. Gerçek tahsilat yapılmaz.
 
